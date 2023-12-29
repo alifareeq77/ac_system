@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Page Title</title>
+    <style>
+        /* Add your CSS styles here */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f4f4f4;
+            color: #333;
+            padding-top: 80px; /* Add padding to the top to avoid overlap with the navbar */
+        }
+
+        nav {
+            background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
+            color: #333;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(10px); /* Apply a blur effect to the background */
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        nav .logo {
+            margin-right: auto; /* Push the logo to the left */
+        }
+
+        nav a {
+            color: #333;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+
+        section {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        footer {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Styles for the thermometer gauge */
+        .thermometer-container {
+            width: 50px;
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        .thermometer {
+            width: 10px;
+            height: 150px;
+            background: linear-gradient(to top, #007bff, #ff0000);
+            border-radius: 5px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mercury {
+            width: 100%;
+            height: 100%;
+            background-color: #cc0000;
+            position: absolute;
+            bottom: 0;
+            transition: transform 0.5s ease; /* Transition added for smooth animation */
+        }
+
+        .temperature-value {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">Your Logo</div>
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Report</a>
+    </nav>
+
+    <section>
+        <h2>Welcome to our website!</h2>
+        <p>This is a modern HTML template. Customize it to suit your needs.</p>
+
+        <!-- Thermometer container -->
+        <div class="thermometer-container">
+            <div class="thermometer">
+                <div class="mercury" id="mercury"></div>
+            </div>
+            <p class="temperature-value" id="temperature-value">0°C</p>
+        </div>
+
+        <!-- Input for dynamic temperature -->
+        <label for="temperature">Set Temperature: </label>
+        <input type="number" id="temperature" min="0" max="100" step="1" oninput="updateThermometer(this.value)">
+    </section>
+
+    <footer>
+        &copy; 2023 Your Website. All rights reserved.
+    </footer>
+
+    <!-- JavaScript for the thermometer gauge -->
+    <script>
+        // Update the thermometer gauge and temperature value based on input
+        function updateThermometer(value) {
+            const mercury = document.getElementById('mercury');
+            const temperatureValue = document.getElementById('temperature-value');
+
+            // Update mercury transformation
+            const translateX = (value / 100) * 100; // Assuming the thermometer covers 0 to 100°C
+            mercury.style.transform = `translateX(${translateX}%)`;
+
+            // Update temperature value text
+            temperatureValue.textContent = `${value}°C`;
+        }
+
+        // Example: Update the thermometer with a default temperature value
+        const defaultTemperature = 25; // Default temperature value
+        updateThermometer(defaultTemperature);
+    </script>
+
+</body>
+</html>
