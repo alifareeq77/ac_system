@@ -28,6 +28,7 @@ DEBUG = True
 if DEBUG:
     ALLOWED_HOSTS = ["*"]
 if not DEBUG:
+    STATIC_ROOT = os.path.join(BASE_DIR, "static")
     ALLOWED_HOSTS = ['51.21.68.158']
     SECRET_KEY = os.environ.get('SECRET_KEY')
 # Application definition
